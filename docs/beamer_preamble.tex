@@ -1,0 +1,42 @@
+% %%%%% Loads table and graphics helpers, and sets default image sizing so
+% included graphics auto-scale to the slide width (and up to 75% of slide
+% height) while preserving aspect ratio.
+\usepackage{booktabs}
+\usepackage{adjustbox}
+\usepackage{graphicx}
+\setkeys{Gin}{width=\linewidth,height=0.75\textheight,keepaspectratio}
+
+% %%%%% Disable caption so that "Figure." is not printed
+\AtBeginDocument{
+  \renewcommand{\caption}[1]{}
+}
+
+% %%%%% Insert a title slide at the start of each section (H2 when --slide-level=3)
+\AtBeginSection{
+  \begin{frame}
+    \centering
+    \LARGE\insertsection
+  \end{frame}
+}
+% same idea for subsections (H3 would be frames already in the setup)
+\AtBeginSubsection{
+  \begin{frame}
+    \centering
+    \Large\insertsubsection
+  \end{frame}
+}
+
+% \AtBeginSection{\frame{\sectionpage}}
+
+% %%%%% Change background color for the code snippets
+\usepackage{xcolor}
+\AtBeginDocument{\colorlet{shadecolor}{blue!8}}
+% tighter padding inside the box
+\setlength{\fboxsep}{1pt}
+% Use the same color as code blocks (shadecolor), or pick another:
+\colorlet{inlinecodebg}{blue!8}
+% Save the original \texttt command then redefines \texttt{...} to draw a
+% colored background behind monospace text (so inline code gets a highlight
+% box).
+\let\oldtexttt\texttt
+\renewcommand{\texttt}[1]{\colorbox{inlinecodebg}{\oldtexttt{#1}}}

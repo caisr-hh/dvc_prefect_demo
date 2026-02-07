@@ -1,0 +1,27 @@
+__pycache__/
+*.pyc
+.venv/
+.uv/
+dist/
+build/
+*.egg-info/
+
+.vscode/
+
+.local_dvc_remote/ 
+.dvc/cache/
+.dvc/tmp/
+
+# ignore all artifacts by default
+models/
+reports/
+
+# ignore all data files by default
+data/**
+
+# do not ignore the directories themselves (so negations below can work)
+!data/**/
+
+# allow DVC metadata anywhere under data/
+!data/**/*.dvc
+!data/**/.gitignore

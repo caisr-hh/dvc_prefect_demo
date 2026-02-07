@@ -1,0 +1,8 @@
+split:
+  test_size: 0.3
+  random_state: 42
+preprocess:
+  standardize: true
+train:
+  C: 0.1
+  max_iter: 200
