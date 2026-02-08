@@ -1,0 +1,20 @@
+flowchart LR
+    subgraph Prefect["Prefect (orchestration)"]
+        F["Flow run"]
+        T1["Task: run DVC or stage"]
+    end
+
+    subgraph DVC["DVC (reproducibility)"]
+        Y["dvc.yaml + dvc.lock"]
+        C["cache + remote (optional)"]
+    end
+
+    subgraph WS["Workspace files"]
+        R["data/  models/  reports/"]
+    end
+
+    F --> T1
+    T1 -->|"Option A: dvc repro"| Y
+    T1 -->|"Option B: Python stages"| R
+    Y --> R
+    R --> C

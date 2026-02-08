@@ -1,0 +1,16 @@
+flowchart LR
+subgraph OptionA["Option A"]
+    PFA["Prefect flow"] --> TA["Task: dvc repro"]
+    TA["Task: dvc repro"] --> TAM["Task: dvc metrics"]
+    TA --> DVC["DVC: DAG + cache + dvc.lock"]
+end
+
+subgraph OptionB["Option B"]
+    PFB["Prefect flow"] --> TB1["Task: prepare()"]
+    TB1 --> TB2["Task: train()"]
+    TB2 --> TB3["Task: evaluate()"]
+    TB3 --> PY["Python pipeline stages"]
+end
+
+DVC --> DATA["DVC data/remote (versioned data/artifacts)"]
+PY --> DATA

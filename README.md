@@ -8,9 +8,10 @@ Content
     - `mltoy/` code base
     - `data/raw/iris.csv` tiny dataset
     - `params.yaml` YAML config for the 
-- Documents
-    - `docs/dvc_walkthrough.md` (and pdf) the walkthrough slide deck
-    - `docs/dvc_walkthrough_extension_slides.md` (and pdf) a set of broader and deeper tips as an extension to walkthrough
+- Walk through slide decks
+    - `docs/dvc_walkthrough.md`
+    - `docs/dvc_walkthrough_extension_slides.md`
+    - `docs/prefect_walkthrough.md`
 
 ## Install dependencies
 
@@ -25,11 +26,15 @@ python -m mltoy.cli train
 python -m mltoy.cli evaluate
 ```
 
-## Walkthrough
+## Make targets
 
-See `docs/dvc_walkthrough_slides.pdf`
+Try `make` to see available targets.
 
-See also `docs/dvc_walkthrough_extension_slides.pdf` for more ...
+## Walkthrough documents
+
+- DVC walkthrough: `docs/dvc_walkthrough_slides.pdf`
+- DVC walkthrough extension: `docs/dvc_walkthrough_extension_slides.pdf` 
+- Prefect walkthrough:  `docs/prefect_walkthrough.pdf`
 
 <details>
 <summary>Generate slides from markdown</summary>
@@ -50,6 +55,17 @@ pandoc \
 
 pandoc \
     dvc_walkthrough_extension.md -o dvc_walkthrough_extension_slides.pdf \
+	-t beamer \
+	-f markdown+raw_tex \
+	--slide-level=3 \
+	--variable aspectratio=169 \
+	--variable fontsize=10pt \
+    --variable theme=metropolis \
+    --highlight-style=tango \
+	-H beamer_preamble.tex
+
+pandoc \
+    prefect_walkthrough.md -o prefect_walkthrough_slides.pdf \
 	-t beamer \
 	-f markdown+raw_tex \
 	--slide-level=3 \
